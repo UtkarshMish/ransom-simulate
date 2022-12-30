@@ -1,0 +1,78 @@
+[
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "os",
+        "description": "os",
+        "isExtraImport": true,
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "get_user",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_user():\n    json_user: Dict[str, str] = request.form\n    if request.is_json:\n        json_user = request.json\n    user_info = list(\n        filter(\n            lambda value: value is not None and len(str(value)) > 1,\n            [\n                json_user.get(\"username\"),\n                json_user.get(\"password\"),",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "CSV_FILE_NAME",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "CSV_FILE_NAME = \"users.csv\"\napp = Flask(__name__)\n@app.post(\"/api/user\")\ndef get_user():\n    json_user: Dict[str, str] = request.form\n    if request.is_json:\n        json_user = request.json\n    user_info = list(\n        filter(\n            lambda value: value is not None and len(str(value)) > 1,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n@app.post(\"/api/user\")\ndef get_user():\n    json_user: Dict[str, str] = request.form\n    if request.is_json:\n        json_user = request.json\n    user_info = list(\n        filter(\n            lambda value: value is not None and len(str(value)) > 1,\n            [",
+        "detail": "app",
+        "documentation": {}
+    }
+]
